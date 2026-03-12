@@ -1,12 +1,42 @@
-package Palindrome;
+import java.util.Scanner;
+import java.util.Stack;
 
-public class PalindromeCheckerApp {
+public class UseCase5PalindromeCheckerApp {
+
     public static void main(String[] args) {
 
+        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Welcome to the Palindrome Checker Application!");
-        System.out.println("This application validates whether a given string is a palindrome.");
+        // Take input from user
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
 
-        System.out.println("Program initialized successfully.");
+        // Create a stack
+        Stack<Character> stack = new Stack<>();
+
+        // Push characters into stack
+        for (int i = 0; i < input.length(); i++) {
+            stack.push(input.charAt(i));
+        }
+
+        boolean isPalindrome = true;
+
+        // Pop characters and compare
+        for (int i = 0; i < input.length(); i++) {
+            char poppedChar = stack.pop();
+            if (input.charAt(i) != poppedChar) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        // Display result
+        if (isPalindrome) {
+            System.out.println("The given string is a Palindrome.");
+        } else {
+            System.out.println("The given string is NOT a Palindrome.");
+        }
+
+        sc.close();
     }
 }
