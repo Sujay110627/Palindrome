@@ -1,12 +1,45 @@
-package Palindrome;
+import java.util.Scanner;
+import java.util.Deque;
+import java.util.ArrayDeque;
 
-public class PalindromeCheckerApp {
+public class UseCase7PalindromeCheckerApp {
+
     public static void main(String[] args) {
 
+        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Welcome to the Palindrome Checker Application!");
-        System.out.println("This application validates whether a given string is a palindrome.");
+        // Take input from user
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
 
-        System.out.println("Program initialized successfully.");
+        // Create a Deque
+        Deque<Character> deque = new ArrayDeque<>();
+
+        // Insert characters into deque
+        for (int i = 0; i < input.length(); i++) {
+            deque.addLast(input.charAt(i));
+        }
+
+        boolean isPalindrome = true;
+
+        // Compare front and rear characters
+        while (deque.size() > 1) {
+            char first = deque.removeFirst();
+            char last = deque.removeLast();
+
+            if (first != last) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        // Display result
+        if (isPalindrome) {
+            System.out.println("The given string is a Palindrome.");
+        } else {
+            System.out.println("The given string is NOT a Palindrome.");
+        }
+
+        sc.close();
     }
 }
